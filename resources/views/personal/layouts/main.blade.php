@@ -40,6 +40,13 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
     </ul>
+    <ul class="navbar-nav ">
+      <li class="nav-item">
+        <form action="{{ route('main.index') }}">
+          <input type="submit" class="btn btn-outline-primary" style="position: absolute;left: 100px;top: 10px;" value="Назад">
+        </form>
+      </li>
+    </ul>
     <ul class="navbar-nav">
       <li class="nav-item">
         <form action="{{ route('logout') }}" method="post">

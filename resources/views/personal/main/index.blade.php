@@ -36,7 +36,7 @@
 
                 <p>Понравившиеся посты</p>
               </div>
-              <div class="icon"></div>
+              <div class="icon">
                 <i class="fas fa-heart"></i>
               </div>
               <a href="{{ route('personal.liked.index') }}" class="small-box-footer">Подробнее <i class="fas fa-arrow-circle-right"></i></a>

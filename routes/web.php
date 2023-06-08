@@ -3,6 +3,12 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Main\IndexController;
+use App\Http\Controllers\Category\IndexController as Category_IndexController;
+use App\Http\Controllers\Category\Post\IndexController as CategoryPostIndexController;
+use App\Http\Controllers\Post\Comment\StoreController as CommentStoreController;
+use App\Http\Controllers\Post\Like\StoreController as LikeStoreController;
+use App\Http\Controllers\Post\IndexController as Post_IndexController;
+use App\Http\Controllers\Post\ShowController as Post_ShowController;
 use App\Http\Controllers\Admin\Main\IndexController as Admin_Main_IndexController;
 use App\Http\Controllers\Personal\Main\IndexController as Personal_Main_IndexController;
 use App\Http\Controllers\Personal\Liked\IndexController as Personal_Liked_IndexController;
@@ -57,6 +63,26 @@ use App\Http\Controllers\Admin\User\UpdateController as UserUpdateController;
 
 Route::group(['namespace' => 'Main'], function() {
     Route::get('/', [IndexController::class, '__invoke'])->name('main.index');
+});
+
+Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function() {
+    Route::get('/', [Category_IndexController::class, '__invoke'])->name('category.index');
+
+    Route::group(['namespace' => 'Post', 'prefix' => '{category}/posts'], function() {
+        Route::get('/', [CategoryPostIndexController::class, '__invoke'])->name('category.post.index');
+    });
+});
+
+Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function() {
+    Route::get('/', [Post_IndexController::class, '__invoke'])->name('post.index');
+    Route::get('/{post}', [Post_ShowController::class, '__invoke'])->name('post.show');
+    //post/1/comments
+    Route::group(['namespace' => 'Comment', 'prefix' => '{post}/comments'], function() {
+        Route::post('/', [CommentStoreController::class, '__invoke'])->name('post.comment.store');
+    });
+    Route::group(['namespace' => 'Like', 'prefix' => '{post}/likes'], function() {
+        Route::post('/', [LikeStoreController::class, '__invoke'])->name('post.like.store');
+    });
 });
 
 Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' => ['auth', 'verified']], function() {

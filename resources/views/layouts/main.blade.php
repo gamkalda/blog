@@ -17,7 +17,7 @@
     <header class="edica-header">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="index.html"><img src="{{ asset('assets/images/logo.svg') }}" alt="Edica"></a>
+                <a class="navbar-brand" href="index.html"><img src="{{ asset('assets/images/davids.svg') }}" alt="Edica"></a>
                 <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#edicaMainNav" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -26,7 +26,25 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('main.index') }}">Блог</a>
                         </li>
-                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('category.index') }}">Категории</a>
+                        </li>
+                        <li class="nav-item">
+                            @auth()                      
+                            <a class="nav-link" href="{{ route('personal.main.index') }}">Личный кабинет</a>
+                            @endauth
+                            @guest()
+                            <a class="nav-link" href="{{ route('login') }}">Войти</a>
+                            @endguest
+                        </li>
+                        <li class="nav-item">
+                            @auth()
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <input type="submit" class="btn btn-outline-primary" value="Выйти">
+                            </form>
+                            @endauth
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -38,12 +56,12 @@
     <section class="edica-footer-banner-section">
         <div class="container">
             <div class="footer-banner" data-aos="fade-up">
-                <h1 class="banner-title">Download it now.</h1>
+                <h1 class="banner-title">Скачать приложение</h1>
                 <div class="banner-btns-wrapper">
                     <button class="btn btn-success"> <img src="{{ asset('assets/images/apple@1x.svg') }}" alt="ios" class="mr-2"> App Store</button>
                     <button class="btn btn-success"> <img src="{{ asset('assets/images/android@1x.svg') }}" alt="android" class="mr-2"> Google Play</button>
                 </div>
-                <p class="banner-text">Add some helper text here to explain the finer details of your <br> product or service.</p>
+                <p class="banner-text">Место для краткого описания приложения</p>
             </div>
         </div>
     </section>
@@ -52,10 +70,10 @@
             <div class="row footer-widget-area">
                 <div class="col-md-3">
                     <a href="index.html" class="footer-brand-wrapper">
-                        <img src="{{ asset('assets/images/logo.svg') }}" alt="edica logo">
+                        <img src="{{ asset('assets/images/davids.svg') }}" alt="edica logo">
                     </a>
-                    <p class="contact-details">hello@edica.com</p>
-                    <p class="contact-details">+23 3000 000 00</p>
+                    <p class="contact-details">my_email@gmail.com</p>
+                    <p class="contact-details">+996 550 *** ***</p>
                     <nav class="footer-social-links">
                         <a href="#!"><i class="fab fa-facebook-f"></i></a>
                         <a href="#!"><i class="fab fa-twitter"></i></a>
@@ -86,14 +104,14 @@
                 <div class="col-md-3">
                     <div class="dropdown footer-country-dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="footerCountryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="flag-icon flag-icon-gb flag-icon-squared"></span> United Kingdom <i class="fas fa-chevron-down ml-2"></i>
+                            <span class="flag-icon flag-icon-kg flag-icon-squared"></span> Кыргызстан <i class="fas fa-chevron-down ml-2"></i>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="footerCountryDropdown">
                             <button class="dropdown-item" href="#">
                                 <span class="flag-icon flag-icon-us flag-icon-squared"></span> United States
                             </button>
                             <button class="dropdown-item" href="#">
-                                <span class="flag-icon flag-icon-au flag-icon-squared"></span> Australia
+                                <span class="flag-icon flag-icon-ru flag-icon-squared"></span> Россия
                             </button>
                         </div>
                     </div>
@@ -105,7 +123,7 @@
                     <a href="#!">Terms</a>
                     <a href="#!">Site Map</a>
                 </nav>
-                <p class="mb-0">© Edica. 2020 <a href="https://www.bootstrapdash.com" target="_blank" rel="noopener noreferrer" class="text-reset">bootstrapdash</a> . All rights reserved.</p>
+                <p class="mb-0">© Davids. 2023 <a href="https://www.bootstrapdash.com" target="_blank" rel="noopener noreferrer" class="text-reset">bootstrapdash</a> . All rights reserved.</p>
             </div>
         </div>
     </footer>

@@ -24,22 +24,26 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-6">
+          <div class="col-9">
             <div class="card">
               <div class="card-body table-responsive p-0">
                 <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Название</th>
+                      <th>Комментарий</th>
                       <th colspan="2" class="text-center">Действие</th>
+                      <th>Имя Поста</th>
                     </tr>
                   </thead>
                   <tbody>
+                    @php
+                      $i=0;
+                    @endphp
                     @foreach($comments as $comment)
                     <tr>
                       <td>{{ $comment->id }}</td>
-                      <td>{{ $comment->message }}</td>
+                      <td>{{ $comment->message }}</td>                    
                       <td class="text-center"><a href="{{ route('personal.comment.edit', $comment->id) }}" class="text-success"><i class="fas fa-pencil-alt"></i></a></td>
                       <td class="text-center">
                         <form action="{{ route('personal.comment.delete', $comment->id) }}" method="POST">
@@ -50,8 +54,13 @@
                           </button>
                         </form>
                       </td>
+                      <td><a href="{{ route('post.show', $comment->post_id) }}">{{ $posts[$i]->title }}</a></td> 
                     </tr>
+                    @php
+                      $i++;
+                    @endphp              
                     @endforeach
+                                     
                   </tbody>
                 </table>
               </div>
