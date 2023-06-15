@@ -123,7 +123,7 @@
                     <a href="#!">Terms</a>
                     <a href="#!">Site Map</a>
                 </nav>
-                <p class="mb-0">© Davids. 2023 <a href="https://www.bootstrapdash.com" target="_blank" rel="noopener noreferrer" class="text-reset">bootstrapdash</a> . All rights reserved.</p>
+                <p class="mb-0">© Davids. 2023</p>
             </div>
         </div>
     </footer>
